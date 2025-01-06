@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Previous CSS remains the same */
+        @font-face {
+            font-family: "ArabicRamadhan";
+            src: url('arabic_ramadhan/ArabicRamadhan-Regular.otf') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'Fragment Core';
+            src: url('fragment_core/FragmentCore-Regular.otf') format('opentype');
+        }
+
+        body {
+            font-family: 'Fragment Core';
+            background-color: #ffc2c2;
+            color: #0066cc;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden; /* Added to prevent horizontal scroll from balloons */
+        }
+
+        .page-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .image-column {
+            width: 250px;
+            padding: 10px;
+        }
+
+        .image-column img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .main-content {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 40px;
+            text-align: justify;
+        }
+
+        h1 {
+            font-family: 'Arabic Ramadhan', cursive;
+            color: #ff6666;
+            font-size: 36px;
+            text-align: center;
+            animation: floating 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, 0px); }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f2d74e;
+            position: absolute;
+            top: -10px;
+            animation: confetti 3s ease-in-out infinite;
+        }
+
+        .confetti:nth-child(2n) { background-color: #95c3de; }
+        .confetti:nth-child(3n) { background-color: #ff9a91; }
+        .confetti:nth-child(4n) { background-color: #f2d74e; }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
+        }
+
+        p {
+            font-family: 'Fragment Core';
+            font-size: 18px;
+            line-height: 1.6;
+            color: #0066cc;
+            text-align: justify;
+            margin: 0 auto 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* New styles for balloon button and animations */
+        .balloon-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .balloon-button:hover {
+            transform: scale(1.05);
+        }
+
+        .balloon {
+            position: fixed;
+            width: 30px;
+            height: 40px;
+            background: #ff6666;
+            border-radius: 50%;
+            animation: floatUp 4s linear;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="image-column">
+            <img src="C:\BIRTHDAY Card Project\image\4.jpg" alt="Left decoration">
+            <img src="C:\BIRTHDAY Card Project\image\5.jpg" alt="Left decoration">
+            <img src="C:\BIRTHDAY Card Project\image\7-removebg-preview.png" alt="Left decoration">
+        </div>
+        
+        <div class="main-content">
+            <div style="position: relative;">
+                <div class="confetti" style="left: 20%;"></div>
+                <div class="confetti" style="left: 40%;"></div>
+                <div class="confetti" style="left: 60%;"></div>
+                <div class="confetti" style="left: 80%;"></div>
+                <h1>🎉 Happy Birthday, Ayaan! 🎂</h1>
+            </div>
+
+            <p>From this day on, may Allah bless you with joy and prosperity in all that you do.</p>
+            <p>May your heart be filled with peace and joy while Allah washes away all your troubles, pain, and struggles.</p>
+            <p>May you always find comfort, courage, and strength during struggles when your heart is sad and lonely.</p>
+            <p>Thank you for coming into my life, and I am humbly grateful for all the things we have done and will do, and the memories we have created.</p>
+            <p>Wishing you a day filled with love, laughter, and joy! May all your dreams come true! 🎂</p>
+            
+            <button class="balloon-button" onclick="releaseBalloons()">Release Birthday Balloons! 🎈</button>
+
+            <footer>
+                Created with ❤️ by [Christopher Axel Everett]
+            </footer>
+        </div>
+
+        <div class="image-column">
+            <img src="C:\BIRTHDAY Card Project\image\6.png" alt="Right decoration">
+            <img src="C:\BIRTHDAY Card Project\image\1.jpg" alt="Right decoration">
+            <img src="C:\BIRTHDAY Card Project\image\3.jpg" alt="Right decoration">
+        
+        </div>
+    </div>
+
+    <script>
+        function releaseBalloons() {
+            const colors = ['#ff6666', '#ff9a91', '#95c3de', '#f2d74e'];
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.style.left = Math.random() * window.innerWidth + 'px';
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.body.appendChild(balloon);
+                    
+                    // Remove balloon after animation
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 4000);
+                }, i * 200); // Stagger balloon release
+            }
+        }
+    </script>
+</body>
+</html>
