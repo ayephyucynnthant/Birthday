@@ -1,23 +1,30 @@
-/* General Page Styling */
+@font-face {
+    font-family: "ArabicRamadhan";
+    src: url('ArabicRamadhan-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Fragment Core';
+    src: url('FragmentCore-Regular.otf') format('opentype');
+}
+
 body {
     font-family: 'Fragment Core', sans-serif;
     background-color: #ffc2c2;
     color: #0066cc;
     margin: 0;
     padding: 20px;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
-/* Layout container */
 .page-container {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Side image columns */
 .image-column {
     width: 100%;
     padding: 10px;
@@ -26,7 +33,7 @@ body {
 
 @media (min-width: 768px) {
     .image-column {
-        width: 250px; /* Revert to original width on larger screens */
+        width: 250px;
     }
 }
 
@@ -38,7 +45,6 @@ body {
     display: block;
 }
 
-/* Main content */
 .main-content {
     flex: 1;
     max-width: 600px;
@@ -46,7 +52,6 @@ body {
     text-align: justify;
 }
 
-/* Styling for Title */
 h1 {
     font-family: 'Arabic Ramadhan', cursive;
     color: #ff6666;
@@ -56,7 +61,12 @@ h1 {
     position: relative;
 }
 
-/* Confetti */
+@keyframes floating {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, 15px); }
+    100% { transform: translate(0, 0px); }
+}
+
 .confetti {
     position: absolute;
     width: 10px;
@@ -65,12 +75,15 @@ h1 {
     animation: confetti 3s ease-in-out infinite;
 }
 
+.confetti:nth-child(2n) { background-color: #95c3de; }
+.confetti:nth-child(3n) { background-color: #ff9a91; }
+.confetti:nth-child(4n) { background-color: #f2d74e; }
+
 @keyframes confetti {
     0% { transform: translateY(0) rotate(0deg); opacity: 1; }
     100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
 }
 
-/* Balloon Button */
 .balloon-button {
     display: block;
     margin: 20px auto;
@@ -88,24 +101,35 @@ h1 {
     transform: scale(1.05);
 }
 
-/* Floating Balloons */
 .balloon {
     position: fixed;
-    width: 30px;
-    height: 40px;
+    width: 50px;
+    height: 60px;
     background: #ff6666;
     border-radius: 50%;
     animation: floatUp 4s linear;
-    opacity: 0;
+    opacity: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #666;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) scale(1.2);
-        opacity: 0;
-    }
+    0% { transform: translateY(100vh) scale(1); opacity: 1; }
+    100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
 }
